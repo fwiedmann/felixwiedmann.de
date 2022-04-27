@@ -1,0 +1,47 @@
+@use "src/styles/theme";
+
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  color: theme.$white-text;
+  background-color: theme.$accent;
+
+  max-width: 300px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+
+  border-radius: theme.$border-radius;
+  padding: 30px;
+
+  & :not(:last-child) {
+    margin-bottom: theme.$gap-s*2;
+  }
+
+  &__img {
+    border-radius: theme.$border-radius;
+    width: 250px;
+  }
+
+  &__header {
+    font-weight: bold;
+    font-size: 1.3rem;
+    overflow: hidden;
+  }
+
+  &__quote {
+    font-style: italic;
+    padding-left: 20px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .card {
+    max-width: 200px;
+  }
+}
