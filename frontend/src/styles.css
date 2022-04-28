@@ -1,18 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  background: #fafbfc;
+  background: #ebecf0;
   font-family: "Open Sans", sans-serif;
+  line-height: 1.5;
 }
 
-@media screen and (max-width: 600px) {
-  * {
-    font-size: 1.3rem;
-  }
-}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   * {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 }
 /* Small devices (portrait tablets and large phones, 600px and up) */

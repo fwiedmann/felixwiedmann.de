@@ -6,10 +6,12 @@
 }
 
 .card {
-  color: theme.$white-text;
-  background-color: theme.$accent;
+  color: theme.$text-black;
+  background-color: theme.$accent-white;
+  box-shadow: 4px 4px #8a94a6;
+  max-width: 75%;
 
-  max-width: 300px;
+  margin-bottom: 30px;
 
   display: flex;
   flex-direction: column;
