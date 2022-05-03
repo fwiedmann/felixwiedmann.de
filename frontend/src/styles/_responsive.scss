@@ -1,0 +1,27 @@
+@use 'theme';
+
+.card {
+  color: theme.$text-black;
+  background-color: theme.$accent-white;
+  box-shadow: 4px 4px #8a94a6;
+  max-width: 75%;
+
+  height: 500px;
+
+  margin-bottom: 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  border-radius: theme.$border-radius;
+  padding: 30px;
+}
+
+@media only screen and (min-width: 1000px) {
+  .card {
+    max-width: 200px;
+    height: 350px;
+  }
+}
