@@ -1,12 +1,20 @@
-.app{
-  display: flex;
-  flex-direction: column;
+.app {
+  display: grid;
+  grid-template-areas:
+    "navigation social-links"
+    "card-picture card-picture"
+    "card-text card-text";
+  gap: 2rem;
 }
 
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1300px) {
   .app {
     margin-left: 30%;
     margin-right: 30%;
+
+    grid-template-areas:
+  "navigation social-links"
+  "card-picture card-text";
   }
 }

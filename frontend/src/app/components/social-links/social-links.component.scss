@@ -1,0 +1,23 @@
+@use 'src/styles/theme';
+
+:host {
+  grid-area: social-links;
+  justify-self: end;
+  align-self: center;
+
+  padding-right: theme.$gap-s;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  * {
+    color: theme.$text-black;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+

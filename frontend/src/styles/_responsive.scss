@@ -3,12 +3,10 @@
 .card {
   color: theme.$text-black;
   background-color: theme.$accent-white;
-  box-shadow: 4px 4px #8a94a6;
-  max-width: 75%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  max-width: 300px;
 
   min-height: 500px;
-
-  margin-bottom: 30px;
 
   display: flex;
   flex-direction: column;
