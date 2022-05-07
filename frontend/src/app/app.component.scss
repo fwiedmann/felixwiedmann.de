@@ -1,3 +1,5 @@
+@use "../styles/responsive";
+
 .app {
   display: grid;
   grid-template-areas:
@@ -8,7 +10,19 @@
 }
 
 
-@media only screen and (min-width: 1300px) {
+@media screen and (min-width: responsive.$screen-min-medium-width) {
+  .app {
+    margin-left: 10%;
+    margin-right: 10%;
+
+    grid-template-areas:
+    "navigation social-links"
+    "card-picture card-picture"
+    "card-text card-text";
+  }
+}
+
+@media screen and (min-width: responsive.$screen-min-large-width) {
   .app {
     margin-left: 30%;
     margin-right: 30%;
