@@ -11,17 +11,16 @@ import {OpinionsComponent} from './components/opinions/opinions.component';
 import {InfoCardTextComponent} from './components/info-card-text/info-card-text.component';
 import {InfoCardPictureComponent} from './components/info-card-picture/info-card-picture.component';
 import {TablerIconsModule} from "angular-tabler-icons";
-import {IconBrandGithub, IconBrandLinkedin, IconMenu} from "angular-tabler-icons/icons";
+import {IconBrandGithub, IconBrandLinkedin, IconMenu, IconX} from "angular-tabler-icons/icons";
 import {SocialLinksComponent} from './components/social-links/social-links.component';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 const icons = {
   IconBrandLinkedin,
   IconBrandGithub,
-  IconMenu
+  IconMenu,
+  IconX
 };
 
 @NgModule({
@@ -39,9 +38,7 @@ const icons = {
     BrowserModule,
     AppRoutingModule,
     TablerIconsModule.pick(icons),
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

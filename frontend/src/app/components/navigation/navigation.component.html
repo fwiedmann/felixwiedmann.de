@@ -1,1 +1,12 @@
-menu-button
+<button class="button button__open" (click)="open=true">
+  <i-tabler class="button__icon" name="Menu"></i-tabler>
+</button>
+<div [@openClose]="open ? 'open' : 'closed'" class="menu">
+  <button class="button button__close" (click)="open=false">
+    <i-tabler class="button__icon" name="X"></i-tabler>
+  </button>
+
+  <div class="links">
+    <button class="button" (click)="scroll('about')">About</button>
+  </div>
+</div>

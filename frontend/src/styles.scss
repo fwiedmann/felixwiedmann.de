@@ -1,6 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-@use "../styles/theme";
-// general styling
+@use "styles/theme";
 
 body {
   background: theme.$accent-white;
@@ -44,4 +42,3 @@ body {
     font-size: 1rem;
   }
 }
-

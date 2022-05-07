@@ -1,3 +1,83 @@
-:host{
+@use "../../../styles/theme";
+@use "../../../styles/responsive";
+
+:host {
   grid-area: navigation;
+
 }
+
+.menu {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  overflow-x: hidden;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+
+  display: grid;
+  grid-template-areas: "links";
+
+}
+
+.button {
+  all: unset;
+  height: 48px;
+
+  &__icon {
+    height: 48px;
+    width: 48px;
+  }
+
+  &__open {
+    color: theme.$text-black;
+  }
+
+  &__close {
+    color: theme.$text-white;
+    margin: theme.$gap-m;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+
+}
+
+.links {
+  grid-area: links;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  * {
+    color: #6c757d;
+    font-size: 1.5rem;
+  }
+
+  :hover {
+    color: theme.$accent-white;
+  }
+}
+
+
+@media screen and (min-width: responsive.$screen-min-medium-width) {
+  .links {
+    * {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+@media screen and (min-width: responsive.$screen-min-large-width) {
+  .links {
+    * {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+

@@ -13,3 +13,12 @@
   font-family: 'Permanent Marker', cursive;
 }
 
+@media screen and (min-width: responsive.$screen-min-medium-width) {
+
+}
+
+@media screen and (min-width: responsive.$screen-min-large-width) {
+  :host {
+    margin-top: 100%;
+  }
+}
