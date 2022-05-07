@@ -1,4 +1,5 @@
 @use 'src/styles/theme';
+@use 'src/styles/responsive';
 
 :host {
   grid-area: social-links;
@@ -20,4 +21,22 @@
   }
 }
 
+
+@media screen and (min-width: responsive.$screen-min-medium-width) {
+  .links {
+    * {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+@media screen and (min-width: responsive.$screen-min-large-width) {
+  .links {
+    * {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
 

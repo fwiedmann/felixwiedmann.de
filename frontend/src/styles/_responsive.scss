@@ -1,5 +1,8 @@
 @use 'theme';
 
+$screen-min-medium-width: 641px;
+$screen-min-large-width: 1008px;
+
 .card {
   color: theme.$text-black;
   background-color: theme.$accent-white;
