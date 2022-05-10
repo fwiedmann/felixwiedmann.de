@@ -1,0 +1,15 @@
+:host {
+  grid-area: work;
+}
+
+.work{
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  font-weight: bold;
+  font-size: 1.3rem;
+  font-family: 'Permanent Marker', cursive;
+  align-self: center;
+}

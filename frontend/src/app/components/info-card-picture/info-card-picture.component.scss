@@ -34,4 +34,8 @@
   .img {
     width: 180px;
   }
+
+  :host {
+    justify-content: end;
+  }
 }

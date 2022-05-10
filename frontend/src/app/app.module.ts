@@ -14,6 +14,7 @@ import {TablerIconsModule} from "angular-tabler-icons";
 import {IconBrandGithub, IconBrandLinkedin, IconMenu, IconX} from "angular-tabler-icons/icons";
 import {SocialLinksComponent} from './components/social-links/social-links.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ScrollDirective } from './scroll.directive';
 
 
 const icons = {
@@ -33,12 +34,13 @@ const icons = {
     InfoCardTextComponent,
     InfoCardPictureComponent,
     SocialLinksComponent,
+    ScrollDirective,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     TablerIconsModule.pick(icons),
     BrowserAnimationsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

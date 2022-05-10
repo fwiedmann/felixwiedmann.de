@@ -5,7 +5,8 @@
   grid-template-areas:
     "navigation social-links"
     "card-picture card-picture"
-    "card-text card-text";
+    "card-text card-text"
+    "work work";
   gap: 2rem;
 }
 
@@ -18,7 +19,8 @@
     grid-template-areas:
     "navigation social-links"
     "card-picture card-picture"
-    "card-text card-text";
+    "card-text card-text"
+    "work work";
   }
 }
 
@@ -29,6 +31,7 @@
 
     grid-template-areas:
   "navigation social-links"
-  "card-picture card-text";
+  "card-picture card-text"
+  "work work";
   }
 }
