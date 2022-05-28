@@ -1,0 +1,35 @@
+@use "../../../../styles/theme";
+
+.skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: theme.$text-grey;
+}
+
+.image-button {
+  border-radius: 15px;
+  border-style: solid;
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 5px;
+}
+
+img {
+  height: 50px;
+  width: 50px;
+}
+
+p {
+  font-size: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+

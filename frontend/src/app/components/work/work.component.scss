@@ -1,8 +1,10 @@
 :host {
   grid-area: work;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.work{
+.work {
   display: flex;
   flex-direction: column;
 }

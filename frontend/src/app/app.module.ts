@@ -14,7 +14,7 @@ import {TablerIconsModule} from "angular-tabler-icons";
 import {IconBrandGithub, IconBrandLinkedin, IconMenu, IconX} from "angular-tabler-icons/icons";
 import {SocialLinksComponent} from './components/social-links/social-links.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ScrollDirective } from './scroll.directive';
+import { SkillComponent } from './components/skills/skill/skill.component';
 
 
 const icons = {
@@ -34,7 +34,7 @@ const icons = {
     InfoCardTextComponent,
     InfoCardPictureComponent,
     SocialLinksComponent,
-    ScrollDirective,
+    SkillComponent,
   ],
   imports: [
     BrowserModule,

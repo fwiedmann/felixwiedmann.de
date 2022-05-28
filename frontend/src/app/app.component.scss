@@ -6,7 +6,8 @@
     "navigation social-links"
     "card-picture card-picture"
     "card-text card-text"
-    "work work";
+    "work work"
+    "skills skills";
   gap: 2rem;
 }
 
@@ -20,7 +21,8 @@
     "navigation social-links"
     "card-picture card-picture"
     "card-text card-text"
-    "work work";
+    "work work"
+    "skills skills";
   }
 }
 
@@ -28,10 +30,10 @@
   .app {
     margin-left: 30%;
     margin-right: 30%;
-
     grid-template-areas:
   "navigation social-links"
   "card-picture card-text"
-  "work work";
+  "work work"
+  "skills skills";
   }
 }

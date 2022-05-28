@@ -1,0 +1,39 @@
+@use "../../../styles/responsive";
+
+:host {
+  grid-area: skills;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(auto-fill, 1fr);
+  row-gap: 1.5rem;
+}
+
+.header {
+  font-weight: bold;
+  font-size: 1.3rem;
+  font-family: 'Permanent Marker', cursive;
+  align-self: center;
+  margin-bottom: 20px;
+}
+
+
+@media screen and (min-width: responsive.$screen-min-large-width) {
+
+
+  .content {
+    grid-template-columns: repeat(3, 1fr);
+
+  }
+
+}
