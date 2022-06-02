@@ -5,6 +5,11 @@ entryPoints:
   websecure:
     address: ":443"
 
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: true
+
 certificatesResolvers:
   myresolver:
     acme:
