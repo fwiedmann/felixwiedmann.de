@@ -19,6 +19,4 @@ services:
       - 80
     labels:
       - traefik.http.routers.fe-http.rule=Host(`felixthe.dev`)
-      - traefik.http.routers.fe-http.entrypoint=web
       - traefik.http.routers.fe-https.rule=Host(`felixthe.dev`)
-      - traefik.http.routers.fe-https.entrypoint=websecure
