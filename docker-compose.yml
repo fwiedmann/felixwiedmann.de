@@ -25,6 +25,6 @@ services:
       - traefik.http.routers.fe-https.rule=Host(`felixthe.dev`)
       - traefik.http.routers.fe-https.entryPoints=websecure
       - traefik.http.routers.fe-https.tls=true
-      - traefik.http.routers.blog.tls.certresolver=cf
+      - traefik.http.routers.fe-https.tls.certresolver=cf
 
 
