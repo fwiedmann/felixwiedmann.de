@@ -20,5 +20,8 @@ services:
     labels:
       - traefik.http.middlewares.https-redirectscheme.redirectscheme.scheme=https
       - traefik.http.routers.fe-http.rule=Host(`felixthe.dev`)
+      - traefik.http.routers.fe-http.entryPoints=web
       - traefik.http.routers.fe-http.middlewares=https-redirectscheme@docker
       - traefik.http.routers.fe-https.rule=Host(`felixthe.dev`)
+      - traefik.http.routers.fe-https.entryPoints=websecure
+
