@@ -11,3 +11,14 @@ services:
       - ./traefik.yaml:/conf/traefik.yaml
     env_file:
       - .env
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    expose:
+      - 80
+    labels:
+      - traefik.http.routers.fe-http.rule=Host(`felixthe.dev`)
+      - traefik.http.routers.fe-http.entrypoint=web
+      - traefik.http.routers.fe-https.rule=Host(`felixthe.dev`)
+      - traefik.http.routers.fe-https.entrypoint=websecure
