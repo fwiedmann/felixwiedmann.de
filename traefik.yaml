@@ -11,7 +11,7 @@ providers:
     exposedByDefault: true
 
 certificatesResolvers:
-  myresolver:
+  cf:
     acme:
       email: contact@felixwiedmann.de
       storage: acme.json
