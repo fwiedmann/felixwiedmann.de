@@ -18,6 +18,12 @@ services:
     expose:
       - 80
     labels:
+      - traefik.http.middlewares.security.headers.framedeny=true
+      - traefik.http.middlewares.security.headers.browserxssfilter=true
+      - traefik.http.middlewares.security.headers.stsSeconds=86400
+      - traefik.http.middlewares.security.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.security.headers.browserXssFilter=true
+      - traefik.http.middlewares.security.headers.stsPreload=true
       - traefik.http.middlewares.https-redirectscheme.redirectscheme.scheme=https
       - traefik.http.routers.fe-http.rule=Host(`felixthe.dev`)
       - traefik.http.routers.fe-http.entryPoints=web
@@ -26,5 +32,7 @@ services:
       - traefik.http.routers.fe-https.entryPoints=websecure
       - traefik.http.routers.fe-https.tls=true
       - traefik.http.routers.fe-https.tls.certresolver=cf
+      - traefik.http.routers.fe-https.middlewares=security@docker
+
 
 
