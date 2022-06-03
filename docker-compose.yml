@@ -24,6 +24,7 @@ services:
       - traefik.http.middlewares.security.headers.contentTypeNosniff=true
       - traefik.http.middlewares.security.headers.browserXssFilter=true
       - traefik.http.middlewares.security.headers.stsPreload=true
+      - "traefik.http.middlewares.security.headers.contentSecurityPolicy=upgrade-insecure-requests; frame-ancestors 'none'; object-src 'none';"
       - traefik.http.middlewares.https-redirectscheme.redirectscheme.scheme=https
       - traefik.http.routers.fe-http.rule=Host(`felixthe.dev`)
       - traefik.http.routers.fe-http.entryPoints=web
