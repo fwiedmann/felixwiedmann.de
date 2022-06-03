@@ -11,15 +11,16 @@ import {OpinionsComponent} from './components/opinions/opinions.component';
 import {InfoCardTextComponent} from './components/info-card-text/info-card-text.component';
 import {InfoCardPictureComponent} from './components/info-card-picture/info-card-picture.component';
 import {TablerIconsModule} from "angular-tabler-icons";
-import {IconBrandGithub, IconBrandLinkedin, IconMenu, IconX} from "angular-tabler-icons/icons";
+import {IconBrandGithub, IconBrandLinkedin, IconBrandTwitter, IconMenu, IconX} from "angular-tabler-icons/icons";
 import {SocialLinksComponent} from './components/social-links/social-links.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { SkillComponent } from './components/skills/skill/skill.component';
+import {SkillComponent} from './components/skills/skill/skill.component';
 
 
 const icons = {
   IconBrandLinkedin,
   IconBrandGithub,
+  IconBrandTwitter,
   IconMenu,
   IconX
 };
