@@ -41,8 +41,7 @@ type VoteCreateAndUpdateDTO struct {
 
 // AuthenticatedUser is capable to perform actions on opinions and votes
 type AuthenticatedUser struct {
-	Id    UserId
-	Roles []string
+	Id UserId
 }
 
 // AuthorizedUser represents a user identity which is permitted to perform the action on the given resource
