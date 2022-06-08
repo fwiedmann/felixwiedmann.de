@@ -21,10 +21,12 @@ type Service interface {
 type Repository interface {
 	CreateOpinion(ctx context.Context, opinion Opinion) error
 	DeleteOpinion(ctx context.Context, id OpinionId) error
+	ListOpinions(ctx context.Context) ([]Opinion, error)
 
 	CreateVote(ctx context.Context, vote Vote) error
 	UpdateVote(ctx context.Context, vote Vote) error
 	DeleteVote(ctx context.Context, id OpinionId) error
+	ListVotes(ctx context.Context) ([]Vote, error)
 }
 
 type PolicyEnforcementPoint interface {
