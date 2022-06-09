@@ -23,7 +23,12 @@ func NewOpinionsRepositorySQLite(dbLocation string) (*OpinionsRepositorySQLite, 
 		return nil, err
 	}
 
-	_, err = tx.Exec("CREATE TABLE IF NOT EXISTS opinions ( id varchar(255) , userId varchar(255), creationTime varchar(255), statement varchar(255), PRIMARY KEY (id))")
+	_, err = tx.Exec("CREATE TABLE IF NOT EXISTS opinions ( id varchar(255) NOT NULL , userId varchar(255) NOT NULL, creationTime varchar(255) NOT NULL, statement varchar(255) NOT NULL, PRIMARY KEY (id))")
+	if err != nil {
+		return nil, err
+	}
+
+	_, err = tx.Exec("CREATE INDEX opinion_id on opinions (id);")
 	if err != nil {
 		return nil, err
 	}
@@ -55,7 +60,7 @@ func (o *OpinionsRepositorySQLite) CreateOpinion(ctx context.Context, opinion ap
 	return tx.Commit()
 }
 func (o *OpinionsRepositorySQLite) ListOpinions(ctx context.Context) ([]application.Opinion, error) {
-	rows, err := o.db.Query("SELECT * FROM opinions")
+	rows, err := o.db.QueryContext(ctx, "SELECT * FROM opinions")
 	if err != nil {
 		return nil, err
 	}
@@ -90,17 +95,23 @@ func (o *OpinionsRepositorySQLite) ListOpinions(ctx context.Context) ([]applicat
 	return opinions, rows.Err()
 }
 
-func (o *OpinionsRepositorySQLite) ListVotes(ctx context.Context) ([]application.Vote, error) {
-	//TODO implement me
-	panic("implement me")
-}
-
 func (o *OpinionsRepositorySQLite) DeleteOpinion(ctx context.Context, id application.OpinionId) error {
-	//TODO implement me
-	panic("implement me")
+	tx, err := o.db.BeginTx(ctx, nil)
+
+	_, err = tx.Exec("DELETE FROM opinions WHERE id = ?", id)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (o *OpinionsRepositorySQLite) CreateVote(ctx context.Context, vote application.Vote) error {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (o *OpinionsRepositorySQLite) ListVotes(ctx context.Context) ([]application.Vote, error) {
 	//TODO implement me
 	panic("implement me")
 }
@@ -113,11 +124,4 @@ func (o *OpinionsRepositorySQLite) UpdateVote(ctx context.Context, vote applicat
 func (o *OpinionsRepositorySQLite) DeleteVote(ctx context.Context, id application.OpinionId) error {
 	//TODO implement me
 	panic("implement me")
-}
-
-type sqliteOpinion struct {
-	id           string
-	userId       string
-	creationTime string
-	statement    string
 }

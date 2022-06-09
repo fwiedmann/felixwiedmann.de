@@ -13,6 +13,7 @@ import (
 )
 
 func TestNewOpinionsRepositorySQLite_create_client_with_new_db_instance(t *testing.T) {
+	t.Parallel()
 	const testDBInstance = "testInstance.db"
 	dbAbsolutePath := fmt.Sprintf("%s/%s", t.TempDir(), testDBInstance)
 
@@ -28,6 +29,7 @@ func TestNewOpinionsRepositorySQLite_create_client_with_new_db_instance(t *testi
 }
 
 func TestNewOpinionsRepositorySQLite_create_client_with_exising_db_instance(t *testing.T) {
+	t.Parallel()
 	const testDBInstance = "testInstance.db"
 	dbAbsolutePath := fmt.Sprintf("%s/%s", t.TempDir(), testDBInstance)
 
@@ -48,6 +50,7 @@ func TestNewOpinionsRepositorySQLite_create_client_with_exising_db_instance(t *t
 }
 
 func TestNewOpinionsRepositorySQLite_error_invalid_path(t *testing.T) {
+	t.Parallel()
 	const testDBInstance = "testInstance.db"
 	dbAbsolutePath := fmt.Sprintf("%s/does-not-exist/%s", t.TempDir(), testDBInstance)
 
@@ -58,6 +61,7 @@ func TestNewOpinionsRepositorySQLite_error_invalid_path(t *testing.T) {
 }
 
 func TestOpinionsRepositorySQLite_CreateOpinion_successfully(t *testing.T) {
+	t.Parallel()
 	const testDBInstance = "testInstance.db"
 	dbAbsolutePath := fmt.Sprintf("%s/%s", t.TempDir(), testDBInstance)
 
@@ -106,6 +110,7 @@ func TestOpinionsRepositorySQLite_CreateOpinion_successfully(t *testing.T) {
 }
 
 func TestOpinionsRepositorySQLite_ListOpinionsOpinion_successfully(t *testing.T) {
+	t.Parallel()
 	const testDBInstance = "testInstance.db"
 	dbAbsolutePath := fmt.Sprintf("%s/%s", t.TempDir(), testDBInstance)
 
@@ -130,7 +135,10 @@ func TestOpinionsRepositorySQLite_ListOpinionsOpinion_successfully(t *testing.T)
 	if err != nil {
 		t.Errorf("could exec transaction: %q", err)
 	}
-	tx.Commit()
+	if err := tx.Commit(); err != nil {
+		t.Errorf("could commit transaction: %q", err)
+
+	}
 
 	list, err := repo.ListOpinions(context.Background())
 	if err != nil {
@@ -143,4 +151,45 @@ func TestOpinionsRepositorySQLite_ListOpinionsOpinion_successfully(t *testing.T)
 	assert.Equal(t, testUserId, list[0].Owner)
 	assert.Equal(t, testTime.Format(time.RFC3339), list[0].CreatedAt.Format(time.RFC3339))
 	assert.Equal(t, testStatement, list[0].Statement)
+}
+
+func TestOpinionsRepositorySQLite_DeleteOpinion(t *testing.T) {
+	t.Parallel()
+	const testDBInstance = "testInstance.db"
+	dbAbsolutePath := fmt.Sprintf("%s/%s", t.TempDir(), testDBInstance)
+
+	repo, err := infrastructure.NewOpinionsRepositorySQLite(dbAbsolutePath)
+	if err != nil {
+		t.Errorf("NewOpinionsRepositorySQLite() retunred error %s, but no error is expected", err)
+	}
+
+	testTime := time.Now()
+	var testUserId application.UserId = "123"
+	var testId application.OpinionId = "1"
+	testStatement := "copy and pasta is fine"
+
+	db, err := sql.Open("sqlite3", dbAbsolutePath)
+
+	tx, err := db.BeginTx(context.Background(), nil)
+	if err != nil {
+		t.Errorf("could not create transaction: %q", err)
+	}
+
+	_, err = tx.Exec("INSERT INTO  opinions (id, userId, creationTime, statement) VALUES (?, ?, ?, ?)", testId, testUserId, testTime.Format(time.RFC3339), testStatement)
+	if err != nil {
+		t.Errorf("could exec transaction: %q", err)
+	}
+	if err := tx.Commit(); err != nil {
+		t.Errorf("could commit transaction: %q", err)
+	}
+
+	if err := repo.DeleteOpinion(context.Background(), testId); err != nil {
+		t.Errorf("could not delete opinion: %q", err)
+	}
+
+	row := db.QueryRow("SELECT * FROM opinions WHERE id = ?", testId)
+
+	if row.Scan() == nil {
+		t.Errorf("Scan() should return an error because opinion could not be found, but no error received")
+	}
 }

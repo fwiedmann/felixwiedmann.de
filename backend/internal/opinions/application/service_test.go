@@ -120,7 +120,7 @@ func Test_service_CreateOpinionCommand(t *testing.T) {
 			timeService.EXPECT().CurrentTime().Return(testDate).MaxTimes(1)
 
 			pep := mock_application.NewMockPolicyEnforcementPoint(ctrl)
-			pep.EXPECT().RequestAccessForUser(gomock.Any(), gomock.Any()).Return(tt.fields.pepError)
+			pep.EXPECT().RequestAccessForUser(gomock.Any(), gomock.Any(), gomock.Any()).Return(tt.fields.pepError)
 
 			repo := mock_application.NewMockRepository(ctrl)
 			repo.EXPECT().CreateOpinion(gomock.Any(), gomock.Any()).Return(tt.fields.repoError).MaxTimes(1)

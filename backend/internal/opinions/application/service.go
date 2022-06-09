@@ -10,6 +10,7 @@ import (
 
 type Service interface {
 	CreateOpinionCommand(ctx context.Context, user AuthenticatedUser, opinion OpinionCreateDTO) (Opinion, error)
+	ListOpinionsCommand(ctx context.Context, user AuthenticatedUser) ([]Opinion, error)
 	DeleteOpinionCommand(ctx context.Context, user AuthenticatedUser, id OpinionId) error
 	HandleUserDeletionEvent(ctx context.Context, event any) error
 
@@ -30,7 +31,7 @@ type Repository interface {
 }
 
 type PolicyEnforcementPoint interface {
-	RequestAccessForUser(userId string, action string) error
+	RequestAccessForUser(ctx context.Context, userId string, action string) error
 }
 
 type IdService interface {
@@ -53,11 +54,16 @@ func NewOpinionService(point PolicyEnforcementPoint, repository Repository, idSe
 const (
 	// ActionCreateOpinion will be used for the user policy enforcement
 	ActionCreateOpinion = "CreateOpinion"
+	// ActionListOpinions will be used for the user policy enforcement
+	ActionListOpinions = "ListOpinions"
+	// ActionDeleteOpinion will be used for the user policy enforcement
+	ActionDeleteOpinion = "DeleteOpinion"
 )
 
 var (
 	// EmptyOpinionStatementError can be returned during OpinionCreateDTO validation
 	EmptyOpinionStatementError = errors.New("opinion statement is empty")
+	EmptyOpinionIdEmptyError   = errors.New("opinion id is empty")
 )
 
 type service struct {
@@ -69,7 +75,7 @@ type service struct {
 
 // CreateOpinionCommand handles the create command for the frontend
 func (s *service) CreateOpinionCommand(ctx context.Context, user AuthenticatedUser, opinion OpinionCreateDTO) (Opinion, error) {
-	if err := s.pep.RequestAccessForUser(string(user.Id), ActionCreateOpinion); err != nil {
+	if err := s.pep.RequestAccessForUser(ctx, string(user.Id), ActionCreateOpinion); err != nil {
 		return Opinion{}, err
 	}
 
@@ -90,9 +96,23 @@ func (s *service) CreateOpinionCommand(ctx context.Context, user AuthenticatedUs
 	return o, nil
 }
 
+func (s *service) ListOpinionsCommand(ctx context.Context, user AuthenticatedUser) ([]Opinion, error) {
+	if err := s.pep.RequestAccessForUser(ctx, string(user.Id), ActionDeleteOpinion); err != nil {
+		return nil, err
+	}
+	return s.repo.ListOpinions(ctx)
+}
+
 func (s *service) DeleteOpinionCommand(ctx context.Context, user AuthenticatedUser, id OpinionId) error {
-	//TODO implement me
-	panic("implement me")
+	if err := s.pep.RequestAccessForUser(ctx, string(user.Id), ActionDeleteOpinion); err != nil {
+		return err
+	}
+
+	if id == "" {
+		return EmptyOpinionIdEmptyError
+	}
+
+	return s.repo.DeleteOpinion(ctx, id)
 }
 
 func (s *service) HandleUserDeletionEvent(ctx context.Context, event any) error {

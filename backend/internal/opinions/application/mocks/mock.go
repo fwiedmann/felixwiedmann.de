@@ -92,6 +92,36 @@ func (mr *MockRepositoryMockRecorder) DeleteVote(arg0, arg1 interface{}) *gomock
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteVote", reflect.TypeOf((*MockRepository)(nil).DeleteVote), arg0, arg1)
 }
 
+// ListOpinions mocks base method.
+func (m *MockRepository) ListOpinions(arg0 context.Context) ([]application.Opinion, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListOpinions", arg0)
+	ret0, _ := ret[0].([]application.Opinion)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListOpinions indicates an expected call of ListOpinions.
+func (mr *MockRepositoryMockRecorder) ListOpinions(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListOpinions", reflect.TypeOf((*MockRepository)(nil).ListOpinions), arg0)
+}
+
+// ListVotes mocks base method.
+func (m *MockRepository) ListVotes(arg0 context.Context) ([]application.Vote, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListVotes", arg0)
+	ret0, _ := ret[0].([]application.Vote)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListVotes indicates an expected call of ListVotes.
+func (mr *MockRepositoryMockRecorder) ListVotes(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListVotes", reflect.TypeOf((*MockRepository)(nil).ListVotes), arg0)
+}
+
 // UpdateVote mocks base method.
 func (m *MockRepository) UpdateVote(arg0 context.Context, arg1 application.Vote) error {
 	m.ctrl.T.Helper()
@@ -130,17 +160,17 @@ func (m *MockPolicyEnforcementPoint) EXPECT() *MockPolicyEnforcementPointMockRec
 }
 
 // RequestAccessForUser mocks base method.
-func (m *MockPolicyEnforcementPoint) RequestAccessForUser(arg0, arg1 string) error {
+func (m *MockPolicyEnforcementPoint) RequestAccessForUser(arg0 context.Context, arg1, arg2 string) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "RequestAccessForUser", arg0, arg1)
+	ret := m.ctrl.Call(m, "RequestAccessForUser", arg0, arg1, arg2)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // RequestAccessForUser indicates an expected call of RequestAccessForUser.
-func (mr *MockPolicyEnforcementPointMockRecorder) RequestAccessForUser(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockPolicyEnforcementPointMockRecorder) RequestAccessForUser(arg0, arg1, arg2 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RequestAccessForUser", reflect.TypeOf((*MockPolicyEnforcementPoint)(nil).RequestAccessForUser), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RequestAccessForUser", reflect.TypeOf((*MockPolicyEnforcementPoint)(nil).RequestAccessForUser), arg0, arg1, arg2)
 }
 
 // MockIdService is a mock of IdService interface.
