@@ -63,7 +63,7 @@ const (
 var (
 	// EmptyOpinionStatementError can be returned during OpinionCreateDTO validation
 	EmptyOpinionStatementError = errors.New("opinion statement is empty")
-	EmptyOpinionIdEmptyError   = errors.New("opinion id is empty")
+	EmptyOpinionIdError        = errors.New("opinion id is empty")
 )
 
 type service struct {
@@ -109,9 +109,8 @@ func (s *service) DeleteOpinionCommand(ctx context.Context, user AuthenticatedUs
 	}
 
 	if id == "" {
-		return EmptyOpinionIdEmptyError
+		return EmptyOpinionIdError
 	}
-
 	return s.repo.DeleteOpinion(ctx, id)
 }
 
