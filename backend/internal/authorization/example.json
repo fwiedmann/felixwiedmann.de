@@ -1,0 +1,14 @@
+{
+  "query": "data.site.allow == true",
+  "input": {
+    "method": "GET",
+    "ownerId": "123",
+    "path": [
+      "opinions",
+      "IDDD"
+    ]
+  },
+  "unknowns": [
+    "data.opinions"
+  ]
+}

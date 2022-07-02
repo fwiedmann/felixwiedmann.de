@@ -1,0 +1,1 @@
+{"result":{"queries":[[{"terms":[{"type":"ref","value":[{"type":"var","value":"eq"}]},{"type":"ref","value":[{"type":"var","value":"data"},{"type":"string","value":"opinions"},{"type":"string","value":"allow"}]},{"type":"boolean","value":true}],"index":0}]]}}
